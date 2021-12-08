@@ -19,6 +19,7 @@ class Transactions extends Migration
             $table->integer('amount');
             $table->integer('type');//0:web,1:mobile,2:pos
             $table->timestamps();
+            $table->index(['amount','type','created_at']);
         });        
     }
 
@@ -29,6 +30,6 @@ class Transactions extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('transactions');
     }
 }

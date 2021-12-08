@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\V1\MobileController;
+use App\Http\Controllers\Api\V1\PosController;
+use App\Http\Controllers\Api\V1\ReportController;
+use App\Http\Controllers\Api\V1\WebController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('transactions',[ReportController::class, 'lastMonth']);
+Route::group([
+    "prefix" => "transaction"
+], function () {
+     Route::post("pos",PosController::class);
+     Route::post("web",WebController::class);
+     Route::post("mobile",MobileController::class);
 });

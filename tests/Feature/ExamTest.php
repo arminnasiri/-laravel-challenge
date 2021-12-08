@@ -15,7 +15,8 @@ class ExamTest extends TestCase
         $response = $this->postJson(
             '/api/transaction/pos', 
             [
-                'amount' => 10000 // rial
+                'amount' => 10000, // rial
+                'webservice_id' => 1
             ]
         );
 
@@ -35,7 +36,8 @@ class ExamTest extends TestCase
         $response = $this->postJson(
             '/api/transaction/web', 
             [
-                'amount' => 1000 // toman
+                'amount' => 1000, // toman
+                'webservice_id' => 1
             ]
         );
 
@@ -53,7 +55,8 @@ class ExamTest extends TestCase
         $response = $this->postJson(
             '/api/transaction/mobile', 
             [
-                'amount' => 1000 // toman
+                'amount' => 1000, // toman
+                'webservice_id' => 1
             ]
         );
 
@@ -71,7 +74,7 @@ class ExamTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'transactions' => [ // sum of amount beetween these ranges
-                    '0to5000',
+                    '0to5000' ,
                     '5000to10000',
                     '10000to100000',
                     '100000toup',
